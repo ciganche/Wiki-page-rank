@@ -27,24 +27,14 @@ public class Scrapper {
 			
 			for(Element  pom:head_temp )
 			{
-				//System.out.println(pom.getElementsByTag("h1").text());
-				//System.out.println("\n");
-				//utils.Save_test.upisi("\nNAZIV: "+naziv);
-				naziv = pom.text();
-
-				
+				naziv = pom.text();				
 			}
 			retval[0] = naziv;
 					
 
-			//boolean check_other_div = false;
 			
 			for(Element  paragraf:cont_temp )
 			{
-				/*
-				String pom =  paragraf.getElementsByTag("div").html();
-				if(pom.contains("<p>")) { check_other_div = true; break;}
-				*/
 				
 				if(paragraf.getElementsByTag("p").text().length() == 0)
 				{
@@ -74,44 +64,6 @@ public class Scrapper {
 				
 			}
 			
-			/*
-			if(check_other_div)
-			{
-				cont_temp = doc.select("mw-parser-output");
-				for(Element  paragraf:cont_temp )
-				{
-					
-					
-					opis = paragraf.getElementsByTag("p").get(0).text();
-					retval[1] = opis;
-					retval[2] =  paragraf.getElementsByTag("p").html();
-					//System.out.println(opis);
-					//utils.Save_test.upisi("\nOPIS: "+opis);
-				}
-			}
-			*/
-			
-			
-			
-			/*
-			
-			//System.out.println(html_temp);
-			utils.Save_test.upisi("\n\nLINKOVI: ");
-			Document temp = Jsoup.parse(html_temp);
-			Elements links = temp.select("a");
-			for(Element a:links)
-			{
-				if(a.text().startsWith("[") || !a.attr("href").startsWith("/wiki")) continue;
-				//a.attr("href")
-				
-				//System.out.println(id+" "+a.text());
-				url = "https://sr.wikipedia.org" + a.attr("href");
-				utils.Save_test.upisi("\n"+id+" "+url);
-				//System.out.println(url);
-				id++;
-				
-			}
-			*/
 			
 		
 		} catch (IOException e) {
