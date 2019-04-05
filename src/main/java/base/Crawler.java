@@ -23,23 +23,6 @@ public class Crawler {
 	
 	
 	public static List<Element> unique = new ArrayList<Element>();
-	/*
-	public static void main(String[] args) throws InterruptedException 
-	{
-			//utils.SaveTest.kreiraj();
-			//mongo = new MongoConnect();
-			
-			
-			//algoritam("https://sr.wikipedia.org/wiki/%D0%9D%D1%83%D0%BC%D0%B5%D1%80%D0%B8%D1%87%D0%BA%D0%B0_%D0%BC%D0%B0%D1%82%D0%B5%D0%BC%D0%B0%D1%82%D0%B8%D0%BA%D0%B0"); //ubaciti pocetnu adresu krolovanja
-			//base.PageRank.makeHMatrix(mongo.coll);
-			//double[][] H = base.PageRank.openHMatrix("D:\\mongodb\\matrix.ha");
-			//base.PageRank.checkCollSum(H);
-			
-			
-			PageRank pr = new PageRank(mongo.coll);
-	}
-	
-	*/
 	
 	public static void algoritam(String root, int n) 
 	{
@@ -53,37 +36,6 @@ public class Crawler {
 	while(!kju.isEmpty())
 	{
 		
-		/*
-		
-		boolean upisuj = true;
-		
-		
-		// provera
-		boolean spreman = false;
-		while(!spreman)
-		{
-			Element curr = kju.poll();
-			String crawledURL = curr.getURL(); 
-			for(int i = 0;i<unique.size();i++)
-			{
-				if(crawledURL.equals(unique.get(i).getURL()))
-				{
-					curr.setRbr(unique.get(i).getRbr());
-					upisuj = false; 	//ne upisuj, uzima se sledeci iz kju-a
-					break;
-				}
-			}
-			if(upisuj)
-			{
-				// dodela novog id-a
-				//upis
-				//ubacivanje u unique
-				spreman = true;
-			}
-		}
-		
-		*/
-		
 		Element curr = kju.poll();
 		String crawledURL = curr.getURL(); 				
 		
@@ -95,32 +47,10 @@ public class Crawler {
 		String naziv = null;
 		String opis = null;
 		
-		/*	boolean kraj = false; //kraj trazenja prvog valjanog u kju 
-		
-		while(!kraj)
-		{
-			if(( html = base.Scrapper.daj_html(crawledURL))==null ) // preuzimanje html-a
-			{
-				System.out.println("! Ne valjda link : " + crawledURL);
-				curr = kju.poll();
-				crawledURL = curr.getURL(); 	
-				kraj = false;
-			}
-			else
-			{
-				kraj = true; // :)
-			}
-		}
-		*/
 		
 		String retval[];
 		retval = base.Scrapper.daj_html(crawledURL);
 		
-		/*if (mongo.existsinDB(retval[0])) {
-			System.out.println("ID: " + id);
-			--id;
-			continue;
-		}*/
 		
 		
 		curr.setNaziv(retval[0]);
@@ -178,15 +108,12 @@ public class Crawler {
 				id++;				
 				unique.add(novi);
 				kju.add(novi);
-				//System.out.println("Dodat je stranica u listu krolovanja: "+ adresa);
 			}
 			else
 			{
 				novi.setRbr(temp_id);
 				if(curr.exists_in_list(temp_id)) continue; //preskakanje duplikata unutar jedne stranice
-				
-				//System.out.println("Pojavio se vec poznat: "+novi.getRbr());
-				
+							
 			}
 			
 			
