@@ -1,4 +1,4 @@
-# EndzinSrc
+# WikiPageRank
 
 #### Language: Java
 
